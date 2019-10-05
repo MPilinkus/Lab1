@@ -1,22 +1,25 @@
-/** @author Eimutis Karčiauskas, KTU IF Programų inžinerijos katedra, 2014 09 23
- *
+/**
+ * @author Eimutis Karčiauskas, KTU IF Programų inžinerijos katedra, 2014 09 23
+ * <p>
  * Tai yra demonstracinė automobilio klasė (jos objektai dedami į LinkedList)
- *       kuri realizuoja interfeisą Parsable<T>
+ * kuri realizuoja interfeisą Parsable<T>
  * IŠSIAIŠKINKITE metodų sudarymą, jų paskirtį ir atitikimą Parsable. IŠBANDYKITE
  * jų veikimą, panaudojant klasę CarTest. PASIRINKITE savo objektų
  * klasę ir sudarykite analogiškus metodus GERESNIAM ĮSISAVINIMUI rekomenduojame
  * pradėti nuo tuščios klasės
-   ***************************************************************************
+ * **************************************************************************
  */
 package edu.ktu.ds.lab1b.demo;
 
 import edu.ktu.ds.lab1b.util.Ks;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import edu.ktu.ds.lab1b.util.Parsable;
 
 public class Car implements Parsable<Car> {
@@ -38,7 +41,7 @@ public class Car implements Parsable<Car> {
     }
 
     public Car(String make, String model,
-            int year, int mileage, double price) {
+               int year, int mileage, double price) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -123,6 +126,7 @@ public class Car implements Parsable<Car> {
         }
         return 0;
     }
+
     // sarankiškai priderinkite prie Lambda funkcijų
     public final static Comparator<Car> byMakeAndModel
             = new Comparator<Car>() {

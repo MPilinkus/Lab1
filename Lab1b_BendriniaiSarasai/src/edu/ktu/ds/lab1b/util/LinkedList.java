@@ -1,10 +1,10 @@
 /**
  * @author Eimutis Karčiauskas, KTU IF Programų inžinerijos katedra, 2014 09 23
- *
+ * <p>
  * Tai pirmoji kompleksinės duomenų struktūros klasė, kuri leidžia apjungti
  * atskirus objektus į vieną visumą - sąrašą. Objektai, kurie bus dedami į
  * sąrašą, turi tenkinti interfeisą Comparable<E>.
- *
+ * <p>
  * Užduotis: Peržiūrėkite ir išsiaiškinkite pateiktus metodus. Metodų algoritmai
  * yra aptarti paslaitos metu. Realizuokite nurodytus metodus.
  * ****************************************************************************
@@ -17,8 +17,8 @@ import java.util.Comparator;
 /**
  * Koreguota 2015-09-18
  *
- * @author Aleksis
  * @param <E> Sąrašo elementų tipas (klasė)
+ * @author Aleksis
  */
 public class LinkedList<E extends Comparable<E>>
         implements List<E>, Iterable<E>, Cloneable {
@@ -69,14 +69,46 @@ public class LinkedList<E extends Comparable<E>>
         if (e == null) {
             return false;
         }
-        if (k < 0 || k >= size) {
+        if (k < 0 || k > size) {
             return false;
         }
-        throw new UnsupportedOperationException("Studentams reikia realizuoti add(int k, E e)");
+        if (first == null) {
+            first = new Node<>(e, null);
+            last = first;
+        } else if (k == size) {
+            last.next = new Node<>(e, null);
+            last = last.next;
+        } else {
+            current = first.findNode(k - 1);
+            current.next = new Node<>(e, current.next);
+        }
+        size++;
+        return true;
+    }
+
+    public boolean addAll(int k, LinkedList<? extends E> c) {
+        if (c == null || k > size || k < 0) {
+            return false;
+        } else if (first == null) {
+            first = (Node<E>) c.first;
+            last = (Node<E>) c.last;
+            size = c.size;
+        } else if (k == size) {
+            last.next = (Node<E>) c.first;
+            last = (Node<E>) c.last;
+            size+=c.size;
+        } else {
+            current = first.findNode(k - 1);
+            Node<E> temp = current.next;
+            current.next = (Node<E>) c.first;
+            current = first.findNode(k + c.size);
+            current.next = temp;
+            size+=c.size;
+        }
+        return true;
     }
 
     /**
-     *
      * @return sąrašo dydis (elementų kiekis)
      */
     @Override
@@ -157,11 +189,32 @@ public class LinkedList<E extends Comparable<E>>
      */
     @Override
     public E remove(int k) {
-        throw new UnsupportedOperationException("Studentams reikia realizuoti remove(int k)");
+        if (k < 0 || k >= size) {
+            return null;
+        }
+        E removed = null;
+        if (k == 0) {
+            removed = first.element;
+            if (first == last) {
+                first = null;
+                last = null;
+            } else {
+                first = first.next;
+            }
+        } else {
+            current = first.findNode(k - 1);
+            removed = current.next.element;
+            if (current.next == last) {
+                last = current;
+            } else {
+                current.next = current.next.next;
+            }
+        }
+        size--;
+        return removed;
     }
 
     /**
-     *
      * @return sąrašo kopiją
      */
     @Override
@@ -237,7 +290,7 @@ public class LinkedList<E extends Comparable<E>>
         if (first == null) {
             return;
         }
-        for (;;) {
+        for (; ; ) {
             boolean jauGerai = true;
             Node<E> e1 = first;
             for (Node<E> e2 = first.next; e2 != null; e2 = e2.next) {
@@ -264,7 +317,7 @@ public class LinkedList<E extends Comparable<E>>
         if (first == null) {
             return;
         }
-        for (;;) {
+        for (; ; ) {
             boolean jauGerai = true;
             Node<E> e1 = first;
             for (Node<E> e2 = first.next; e2 != null; e2 = e2.next) {
