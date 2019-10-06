@@ -10,8 +10,11 @@
 package demos.graphics;
 
 import extendsFX.BaseGraphics;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -32,7 +35,14 @@ public class Demo0_Basic extends BaseGraphics {
         gc.strokeLine(0, canvasH, canvasW, 0);
     }  
 // UŽDUOTIS_1: plonomis linijomis su žingsniu step=50 nubrėžkite tinklelį
-    private void drawGrid1() { 
+    private void drawGrid1() {
+        double step = 50;
+        gc.setLineWidth(0.1);         // linijos plotis galimai mažesnis
+        for(double u = step; u < Math.max(canvasW, canvasH); u += step) {
+            gc.setStroke(Color.GREY);
+            gc.strokeLine(0, u, canvasW, u);   // horizontalios linijos
+            gc.strokeLine(u, 0, u, canvasH);   // vertikalios linijos
+        }
     }
 // https://examples.javacodegeeks.com/desktop-java/javafx/javafx-canvas-example/    
     private void drawExamples1() {
@@ -70,10 +80,26 @@ public class Demo0_Basic extends BaseGraphics {
         gc.setLineWidth(1);
         gc.setStroke(Color.BLACK);
         gc.strokeText(sb.toString(), 50, 350);
+//        for(char ch = '\u2554'; ch <= '\u255F'; ch++)
+//            sb.append(ch);
+//        gc.setFont(Font.font("Lucida Console", 36));
+//        gc.setLineWidth(1);
+//        gc.setStroke(Color.BLACK);
+//        gc.strokeText(sb.toString(), 50, 350);
     }
 // UŽDUOTIS_2: nubrėžkite polilinijas ir poligonus   
 // https://www.tutorialspoint.com/javafx/2dshapes_polygon    
-    private void drawExamples2() {      
+    private void drawExamples2(Stage primaryStage) {
+        Polygon hexagon = new Polygon();
+        hexagon.getPoints().addAll(200.0, 50.0,
+                400.0, 50.0,
+                450.0, 150.0,
+                400.0, 250.0,
+                200.0, 250.0,
+                150.0, 150.0);
+        Group root = new Group(hexagon);
+        Scene scene = new Scene(root ,600, 300);
+        gc.fillPolygon();
     }
 // UŽDUOTIS_3: nubrėžkite taisyklingus 3, 4, 5, ..., 9-kampius  
     private void drawExamples3() {    
@@ -96,10 +122,12 @@ public class Demo0_Basic extends BaseGraphics {
     public void createControls(){
         addButton("clear", e -> clearCanvas()); 
         addButton("grid",  e -> baseGrid());
+        addButton("grid1",  e -> drawGrid1());
         addButton("HVC",   e -> drawHVtoCenter());
         addButton("XC",    e -> drawXtoCenter());
         addButton("pvz1",  e -> drawExamples1());
         addButton("UniCode",  e -> drawUnicode());
+        addButton('polygon', e -> drawExamples2(e))
         addNewHBox();
     }
     @Override

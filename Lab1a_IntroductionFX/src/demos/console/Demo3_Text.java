@@ -87,6 +87,10 @@ public class Demo3_Text extends BaseConsole {
             ta1.appendText("d+<>pirmas=1;antras>-22:trečias:333viskas" + nL);
         //String[] sa = readLastLine().split("-");      // padaliname į dvi dalis
         String[] sa = readLastLine().split("-"); // a
+        //a
+        //String[] sa = readLastLine().split("\\b[A-Za-z][^\\sąčęėįšųūž)]+\\b");
+        //b
+        //String[] sa = readLastLine().split("\\b[^\\sąčęėįšųūž]+\\b");
         ta2.appendText(String.join(" : ", sa) + nL); // pakartojame dešinėje
         Pattern pat = Pattern.compile(sa[0]);      // pirma dalis - tai Pattern
         Matcher m = pat.matcher(sa[1]);            // kita dalis - apdorojimui

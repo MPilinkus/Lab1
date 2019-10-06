@@ -75,6 +75,9 @@ public class LinkedList<E extends Comparable<E>>
         if (first == null) {
             first = new Node<>(e, null);
             last = first;
+        } else if (k == 0) {
+            current = first.findNode(k);
+            first = new Node<>(e, current);
         } else if (k == size) {
             last.next = new Node<>(e, null);
             last = last.next;
@@ -96,14 +99,14 @@ public class LinkedList<E extends Comparable<E>>
         } else if (k == size) {
             last.next = (Node<E>) c.first;
             last = (Node<E>) c.last;
-            size+=c.size;
+            size += c.size;
         } else {
             current = first.findNode(k - 1);
             Node<E> temp = current.next;
             current.next = (Node<E>) c.first;
-            current = first.findNode(k + c.size);
+            current = first.findNode(k + c.size - 1);
             current.next = temp;
-            size+=c.size;
+            size += c.size;
         }
         return true;
     }
@@ -161,7 +164,13 @@ public class LinkedList<E extends Comparable<E>>
      */
     @Override
     public E set(int k, E e) {
-        throw new UnsupportedOperationException("Studentams reikia realizuoti set(int k, E e)");
+        if (k < 0 || k >= size) {
+            return null;
+        }
+        current = first.findNode(k - 1);
+        E removed = current.next.element;
+        current.next.element = e;
+        return removed;
     }
 
     /**
@@ -206,12 +215,50 @@ public class LinkedList<E extends Comparable<E>>
             removed = current.next.element;
             if (current.next == last) {
                 last = current;
+                last.next = null;
             } else {
                 current.next = current.next.next;
             }
         }
         size--;
         return removed;
+    }
+
+    public E removeFirst() {
+        E removed = null;
+        if (size == 0) {
+            return null;
+        } else if (size == 1) {
+            removed = first.element;
+            first = null;
+            last = null;
+        } else {
+            first = first.next;
+        }
+        size--;
+        return removed;
+    }
+
+    public boolean removeFirstOccurrence(Object O) {
+        if (size == 0 || O == null){
+            return false;
+        }
+        if(first.element == O){
+            removeFirst();
+            return true;
+        }
+        if(last.element == O){
+            remove(size-1);
+            return true;
+        }
+        for (Node<E> e1 = first; e1.next != null; e1 = e1.next) {
+            if (e1.next.element == O){
+                e1.next = e1.next.next;
+                size--;
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

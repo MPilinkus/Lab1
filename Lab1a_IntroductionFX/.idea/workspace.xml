@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5575e3f5-55d6-4678-b8ed-680c791e6470" name="Default Changelist" comment="" />
+    <list default="true" id="5575e3f5-55d6-4678-b8ed-680c791e6470" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab1a_IntroductionFX/demos/console/Demo3_Text.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab1a_IntroductionFX/demos/console/Demo3_Text.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab1a_IntroductionFX/demos/graphics/Demo0_Basic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab1a_IntroductionFX/demos/graphics/Demo0_Basic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/demos/console/Demo3_Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demos/console/Demo3_Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/demos/graphics/Demo0_Basic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demos/graphics/Demo0_Basic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/demo/ManualTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/demo/ManualTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/pilinkus/House.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/pilinkus/House.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/util/LinkedList$Iterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/util/LinkedList$Iterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/util/LinkedList$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/util/LinkedList$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/util/LinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/out/production/Lab1b_BendriniaiSarasai/edu/ktu/ds/lab1b/util/LinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/src/edu/ktu/ds/lab1b/demo/ManualTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab1b_BendriniaiSarasai/src/edu/ktu/ds/lab1b/demo/ManualTest.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1Qakeyj8eAa6qk3CnmCQRX23KyB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -28,7 +48,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Demo3_Text">
+  <component name="RunManager" selected="Application.Demo0_Basic">
+    <configuration name="Demo0_Basic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demos.graphics.Demo0_Basic" />
+      <module name="Lab1a_IntroductionFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="demos.graphics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Demo0_Hello" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demos.console.Demo0_Hello" />
       <module name="Lab1a_IntroductionFX" />
@@ -83,6 +116,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Demo0_Basic" />
         <item itemvalue="Application.Demo3_Text" />
         <item itemvalue="Application.Demo2_StackQueue" />
         <item itemvalue="Application.Demo1_StringBuilder" />
@@ -104,10 +138,22 @@
       <workItem from="1568189030609" duration="3921000" />
       <workItem from="1568614219842" duration="4173000" />
       <workItem from="1569222106291" duration="75000" />
+      <workItem from="1570280326330" duration="4602000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
