@@ -37,9 +37,9 @@ public class Demo0_Basic extends BaseGraphics {
 // UŽDUOTIS_1: plonomis linijomis su žingsniu step=50 nubrėžkite tinklelį
     private void drawGrid1() {
         double step = 50;
-        gc.setLineWidth(0.1);         // linijos plotis galimai mažesnis
+        gc.setLineWidth(0.15);         // linijos plotis galimai mažesnis
         for(double u = step; u < Math.max(canvasW, canvasH); u += step) {
-            gc.setStroke(Color.GREY);
+            gc.setStroke(Color.BLACK);
             gc.strokeLine(0, u, canvasW, u);   // horizontalios linijos
             gc.strokeLine(u, 0, u, canvasH);   // vertikalios linijos
         }
@@ -89,31 +89,77 @@ public class Demo0_Basic extends BaseGraphics {
     }
 // UŽDUOTIS_2: nubrėžkite polilinijas ir poligonus   
 // https://www.tutorialspoint.com/javafx/2dshapes_polygon    
-    private void drawExamples2(Stage primaryStage) {
-        Polygon hexagon = new Polygon();
-        hexagon.getPoints().addAll(200.0, 50.0,
-                400.0, 50.0,
-                450.0, 150.0,
-                400.0, 250.0,
-                200.0, 250.0,
-                150.0, 150.0);
-        Group root = new Group(hexagon);
-        Scene scene = new Scene(root ,600, 300);
-        gc.fillPolygon();
+    private void drawExamples2() {
+        gc.setLineWidth(2.5);
+        gc.setStroke(Color.BLACK);
+        gc.setFill(Color.WHITE);
+        gc.fillPolygon(new double[] {50, 40, 40, 50}, new double[] {30, 30, 20, 20}, 4);
+        gc.strokePolygon(new double[]{100, 150, 100}, new double[] {20, 30, 70}, 3);
+        gc.strokePolyline(new double[] {200, 210, 250}, new double[] {40, 30, 60}, 3);
     }
 // UŽDUOTIS_3: nubrėžkite taisyklingus 3, 4, 5, ..., 9-kampius  
     private void drawExamples3() {    
         // Nurodymas: parašykite funkciją, kuri paskaičiuoja skaičių masyvus
         // kuriuose surašomos taisyklingo daugiakampio koordinatės
+        gc.setLineWidth(2.5);
+        gc.setStroke(Color.BLACK);
+        gc.setFill(Color.WHITE);
+        for(int i = 3; i<=9; i++){
+            double centerX = 65 * (i-3) + 40;
+            double centerY = 150;
+            double radius = 30;
+            double[] xPoints = new double[i];
+            double[] yPoints = new double[i];
+            for (int j = 0; j < i; j++) {
+                double x = centerX + radius * Math.sin(j * 2 * Math.PI / i);
+                double y = centerY + radius * Math.cos(j * 2 * Math.PI / i);
+                xPoints[j] = x;
+                yPoints[j] = y;
+            }
+            gc.strokePolygon(xPoints, yPoints, i);
+        }
     }
 // UŽDUOTIS_4: nubrėžkite žiedus https://en.wikipedia.org/wiki/Olympic_symbols
-    private void drawOlympicRings() {      
+    private void drawOlympicRings() {
+        gc.setLineWidth(7.0);
+        gc.setStroke(Color.BLUE);
+        int x = 10, y = 10, w = 80, h = 80, d = 20;
+        gc.strokeOval(x, y, w, h);
+        gc.setStroke(Color.YELLOW);
+        x += 50;
+        y += 40;
+        gc.strokeOval(x, y, w, h);
+        gc.setStroke(Color.BLACK);
+        x += 50;
+        y -= 40;
+        gc.strokeOval(x, y, w, h);
+        gc.setStroke(Color.GREEN);
+        x += 50;
+        y += 40;
+        gc.strokeOval(x, y, w, h);
+        gc.setStroke(Color.RED);
+        x += 50;
+        y -= 40;
+        gc.strokeOval(x, y, w, h);
     }
 // UŽDUOTIS_5: pasirinktinai nubrėžkite savo tematiką:
 // kelių valstybių sudėtingesnes vėliavas http://flagpedia.net/index
 // pvz: Pietų Afrikos, Makedonijos, Norvegijos, Graikijos, Britanijos, ...
 // arba futbolo, krepšinio ar ledo ritulio aikštes su žaidėjų pozicijomis  
-    private void drawFreeThema() {      
+    private void drawFreeThema() {
+        gc.setLineWidth(0);
+        //Italy
+        gc.setFill(Color.rgb(0,146,70));
+        gc.fillPolygon(new double[] {10, 60, 60, 10}, new double[] {10, 10, 90, 90}, 4);
+        gc.setFill(Color.rgb(255,255,255));
+        gc.fillPolygon(new double[] {60, 110, 110, 60}, new double[] {10, 10, 90, 90}, 4);
+        gc.setFill(Color.rgb(206,43,45));
+        gc.fillPolygon(new double[] {110, 160, 160, 110}, new double[] {10, 10, 90, 90}, 4);
+        //Japan
+        gc.setFill(Color.rgb(255,255,255));
+        gc.fillPolygon(new double[] {10, 160, 160, 10}, new double[] {100, 100, 180, 180}, 4);
+        gc.setFill(Color.RED);
+        gc.fillOval(60, 115, 50, 50);
     }    
 // kontrolinės užduotys gynimo metu:
 // įvairios vėliavos, tiesiog tokios sudėtinės figūros kaip namukas,
@@ -127,7 +173,10 @@ public class Demo0_Basic extends BaseGraphics {
         addButton("XC",    e -> drawXtoCenter());
         addButton("pvz1",  e -> drawExamples1());
         addButton("UniCode",  e -> drawUnicode());
-        addButton('polygon', e -> drawExamples2(e))
+        addButton("PolygonPolyline", e -> drawExamples2());
+        addButton("Regular polygons", e -> drawExamples3());
+        addButton("Olympic", e -> drawOlympicRings());
+        addButton("Flags", event -> drawFreeThema());
         addNewHBox();
     }
     @Override

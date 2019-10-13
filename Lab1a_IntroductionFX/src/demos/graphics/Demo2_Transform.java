@@ -30,6 +30,16 @@ public class Demo2_Transform extends BaseGraphics {
         gc.strokeText("Hello",0, 50);
     }
 
+    private void drawSuite2() {
+        gc.setFill(randomColor());
+        gc.fillRect(0, 0, 60, 70);
+        gc.setFill(randomColor());
+        gc.fillOval(60, 0, 15, 50);
+        gc.setFill(randomColor());
+        gc.fillPolygon(new double [] {75, 100, 85}, new double [] {0, 20, 60}, 3);
+    }
+
+
     @Override
     public void createControls(){
         vip = new VisualParameters();
@@ -41,7 +51,8 @@ public class Demo2_Transform extends BaseGraphics {
         addButton("scale-", e -> gc.scale(0.5, 0.5));
         addButton("rotate", e -> gc.rotate(vip.rotateAngle()));
         addButton("draw1",   e -> drawSuite1());
-    }
+        addButton("draw2",   e -> drawSuite2());
+}
 // DĖMESIO - tai speciali klasė, kurioje saugojami vizualių parametų komponentai
 // Juose užfiksuotos reikšmė gražinamos tam skirtų metodų pagalba.
 // Kadangi žinomas gražinamos reikšmės tipas, tai atliekama būtina konversija.

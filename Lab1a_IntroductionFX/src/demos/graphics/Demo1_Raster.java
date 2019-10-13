@@ -63,7 +63,19 @@ public class Demo1_Raster extends BaseGraphics {
         gc.strokeOval(x, y, w, h); 
         drawRecursive(x,     y, w/2, h/2);
         drawRecursive(x+w/2, y, w/2, h/2);
-    }     
+    }
+
+    public void drawLinesFromCorners() {
+        int count = Integer.parseInt(tfCount.getText());
+        double dif = Double.parseDouble(tfDifer.getText());
+        gc.setStroke(color);
+        double x = 0;
+        for(int i=0; i<=count; i++){
+            gc.strokeLine(canvasW, canvasH/2-dif/2, x, 0);
+            gc.strokeLine(0, canvasH/2+dif/2, x, 0);
+            x += canvasW / count ;
+        }
+    }
     @Override
     public void createControls(){
         tfCount = addTextField("linijų kiekis", "80", 40);
@@ -76,6 +88,7 @@ public class Demo1_Raster extends BaseGraphics {
         addButton("Lines",     e -> drawSetOfLines() );
         addButton("Circles",   e -> drawSetOfCircles());
         addButton("Recursive", e -> drawRecursive(0, 0, canvasW, canvasH));
+        addButton("Lines from corners", event -> drawLinesFromCorners());
         addNewHBox();
     }
     @Override

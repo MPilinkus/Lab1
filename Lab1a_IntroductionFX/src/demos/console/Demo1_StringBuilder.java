@@ -64,15 +64,20 @@ public class Demo1_StringBuilder extends BaseConsole {
 
     // sudarykite pasirinktinai metodus apverstai ar pasuktai piramidei spausdinti
     private void anotherPyramid(int h) {
+        String[] lines = new String[h];
         final char emptySym = ' ';
-        printLn("=== Apversta piramide h=" + h);
+        String fillSym = "\u25C8";
+        printLn("=== Piramidė h=" + h);
         StringBuilder pyr1 = new StringBuilder();
-        pyr1.append(new String(new char[h]).replace('\0', '#'));
-        StringBuilder pyr2 = new StringBuilder('#');
-        for (int i = h; i > 0; i--) {
-            //i+i-1;
-            printLn(pyr1.toString() + pyr2 + pyr1);
-            pyr1.deleteCharAt(0).deleteCharAt(i - 1);
+        pyr1.append(new String(new char[h]).replace('\0', emptySym));
+        StringBuilder pyr2 = new StringBuilder(fillSym);
+        for (int i = 0; i < h; i++) {
+            lines[i] = pyr1.toString() + pyr2 + pyr1;
+            pyr1.deleteCharAt(pyr1.length() - 1);
+            pyr2.append(fillSym).append(fillSym);
+        }
+        for (int i = h - 1; i >= 0; i--) {
+            printLn(lines[i]);
         }
     }
 

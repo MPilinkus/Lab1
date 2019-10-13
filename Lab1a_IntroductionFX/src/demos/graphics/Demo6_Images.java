@@ -12,6 +12,7 @@ package demos.graphics;
 
 import extendsFX.BaseGraphics;
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
@@ -19,6 +20,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Demo6_Images extends BaseGraphics {
+
+    private boolean animation = true;
+    private long calculationNanoTime = 0;
 
     void createRects(){
         double x = 0,  y = 0;
@@ -46,7 +50,11 @@ public class Demo6_Images extends BaseGraphics {
     Image space = new Image( "images\\space.png" );
     Image sun   = new Image( "images\\sun.png" );
     Image earth = new Image( "images\\earth.png" );
+    Image ufo = new Image("images\\ufo_0.png");
     ImageView earthView = new ImageView(earth);
+    ImageView ufoView = new ImageView(ufo);
+    boolean calculationDone = false;
+    private double pos = 0;
     // kosmosą ir saulę nupiešime ant drobės, o žemę paleisime suktis
     void createSpace(){
         final double xc = canvasW / 2;
@@ -56,19 +64,26 @@ public class Demo6_Images extends BaseGraphics {
         gc.drawImage( space, 0, 0 );
         gc.drawImage( sun, xc - sun.getWidth() / 2, yc - sun.getHeight() / 2);
         nodes.add(earthView);
+        nodes.add(ufoView);
         earthView.setSmooth(false);
         earthView.setScaleX(1.5);
         earthView.setScaleY(1.5);
+        ufoView.setSmooth(false);
+        ufoView.setScaleX(1);
+        ufoView.setScaleY(1.2);
         final long startNanoTime = System.nanoTime();
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                double t = (now - startNanoTime) / 1_000_000_000.0; 
-                earthView.setX(xc - earth.getWidth()/2 + radius * Math.cos(t));
-                earthView.setY(yc - earth.getWidth()/2 + radius * Math.sin(t));
+                earthView.setX(xc - earth.getWidth()/2 + radius * Math.cos(pos));
+                earthView.setY(yc - earth.getWidth()/2 + radius * Math.sin(pos));
+                ufoView.setX(xc - ufo.getWidth()/2 + radius* 0.65 * Math.sin(pos));
+                ufoView.setY(yc - ufo.getWidth()/2 + radius* 0.65 * Math.cos(pos));
+                if(animation) pos+=0.01;
             }
-        }.start();        
+        }.start();
     }
+
     // paaiškinkite kintamojo t skaičiavime naudojamą konstantą
     // paskaičiuokite per kiek laiko apskrieja žemė aplink saulę
     // sukurkite start - stopinį mygtuką, kuris aktyvuotų ir stabdytų žemę
@@ -86,6 +101,18 @@ public class Demo6_Images extends BaseGraphics {
         addButton("clearLast",  e -> {if(nodes.size()>0)
                                         nodes.remove(nodes.size()-1);});
         addButton("Sun_System", e -> createSpace());
+        addButton("pause", e -> {   // šis mygtukas dirba start-stop režimu
+            Button btn = (Button)e.getSource();
+            switch(btn.getText()){
+                case "pause":   // pristabdome animaciją
+                    calculationNanoTime = System.nanoTime();
+                    animation = false;
+                    btn.setText("play"); break;
+                case "play":   // atnaujiname animaciją
+                    animation = true;
+                    btn.setText("pause"); break;
+            }
+        });
 //        addNewHBox();
     }
     @Override

@@ -85,12 +85,14 @@ public class Demo3_Text extends BaseConsole {
     void regexExamples() {
         if (ta1.getText().isEmpty())  // jei tuščia - pateikiame demo variantą
             ta1.appendText("d+<>pirmas=1;antras>-22:trečias:333viskas" + nL);
-        //String[] sa = readLastLine().split("-");      // padaliname į dvi dalis
-        String[] sa = readLastLine().split("-"); // a
+        String[] sa = readLastLine().split("-");      // padaliname į dvi dalis
+        //String[] sa = readLastLine().split("-"); // a
         //a
         //String[] sa = readLastLine().split("\\b[A-Za-z][^\\sąčęėįšųūž)]+\\b");
         //b
         //String[] sa = readLastLine().split("\\b[^\\sąčęėįšųūž]+\\b");
+        //c
+        //String[] sa = readLastLine().split("<>");
         ta2.appendText(String.join(" : ", sa) + nL); // pakartojame dešinėje
         Pattern pat = Pattern.compile(sa[0]);      // pirma dalis - tai Pattern
         Matcher m = pat.matcher(sa[1]);            // kita dalis - apdorojimui
