@@ -160,7 +160,29 @@ public class Demo0_Basic extends BaseGraphics {
         gc.fillPolygon(new double[] {10, 160, 160, 10}, new double[] {100, 100, 180, 180}, 4);
         gc.setFill(Color.RED);
         gc.fillOval(60, 115, 50, 50);
-    }    
+    }
+    private void drawEurope() {
+        gc.setLineWidth(0);
+        gc.setFill(Color.BLUE);
+        gc.fillPolygon(new double[] {0, 0, 200, 200}, new double[] {0, 120, 120, 0}, 4);
+        gc.setFill(Color.YELLOW);
+        drawStar(100,15);
+        drawStar(120,20);
+        drawStar(135,35);
+        drawStar(140,55);
+        drawStar(135,75);
+        drawStar(120,90);
+        drawStar(100,95);
+        drawStar(80,90);
+        drawStar(65,75);
+        drawStar(60,55);
+        drawStar(65,35);
+        drawStar(80,20);
+    }
+    private void drawStar(int x, int y){
+        gc.fillPolygon(new double[] {x+3, x+0, x+2, x+1, x+4, x+7, x+6, x+8, x+5, x+4},
+                new double[] {y+3, y+3, y+5, y+8, y+6, y+8, y+5, y+3, y+3, y+0}, 10);
+    }
 // kontrolinės užduotys gynimo metu:
 // įvairios vėliavos, tiesiog tokios sudėtinės figūros kaip namukas,
 // medis, eglė, sniego senio siluetas :-) ir t.t.    
@@ -177,6 +199,7 @@ public class Demo0_Basic extends BaseGraphics {
         addButton("Regular polygons", e -> drawExamples3());
         addButton("Olympic", e -> drawOlympicRings());
         addButton("Flags", event -> drawFreeThema());
+        addButton("Europa", event -> drawEurope());
         addNewHBox();
     }
     @Override

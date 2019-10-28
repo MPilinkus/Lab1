@@ -105,7 +105,6 @@ public class Demo6_Images extends BaseGraphics {
             Button btn = (Button)e.getSource();
             switch(btn.getText()){
                 case "pause":   // pristabdome animaciją
-                    calculationNanoTime = System.nanoTime();
                     animation = false;
                     btn.setText("play"); break;
                 case "play":   // atnaujiname animaciją

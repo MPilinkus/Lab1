@@ -111,6 +111,19 @@ public class LinkedList<E extends Comparable<E>>
         return true;
     }
 
+    public int lastIndexOf(Object o) {
+        int index = -1;
+        if(o == null) return index;
+        int tempIndex = 0;
+        for (Node<E> e1 = first; e1.next != null; e1 = e1.next) {
+            if(e1.element == o) {
+                index = tempIndex;
+            }
+            tempIndex++;
+        }
+        return index;
+    }
+
     /**
      * @return sąrašo dydis (elementų kiekis)
      */

@@ -34,8 +34,14 @@ public class Benchmark {
     }
 
     void testSqrtVsHypot (int elementCount) {
+        System.gc();
+        System.gc();
+        System.gc();
         long t0 = System.nanoTime();
+        long memTotal = Runtime.getRuntime().totalMemory();
         generateNumbers(elementCount);
+        long memFree  = Runtime.getRuntime().freeMemory();
+        int memUsed1 = (int) (memTotal - memFree);
         long t1 = System.nanoTime();
         System.gc();
         System.gc();
@@ -60,19 +66,30 @@ public class Benchmark {
             result = Math.hypot(xDoubleNumbers[i],yDoubleNumbers[i]);
         }
         long t7 = System.nanoTime();
-        Ks.ouf("%7d %7.4f %7.4f %7.4f %7.4f %7.4f %7.4f %7.4f \n", elementCount,
+        Ks.ouf("%7d %7.4f %7.4f %7.4f %7.4f %7.4f %7.4f %7.4f %7d \n", elementCount,
                 (t1 - t0) / 1e9, (t2 - t1) / 1e9, (t3 - t2) / 1e9, (t4 - t3) / 1e9, (t5 - t4) / 1e9,
-                (t6 - t5) / 1e9, (t7 - t6) / 1e9);
+                (t6 - t5) / 1e9, (t7 - t6) / 1e9, memUsed1);
     }
 
     void testArrayList(int elementCount){
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
+        System.gc();
         long t0 = System.nanoTime();
+        long memTotal = Runtime.getRuntime().totalMemory();
         for(int i = 0; i<elementCount; i++){
             Arr.add(i);
         }
         for(int i = 0; i < elementCount*0.5; i++){
             Val.add(rg.nextInt(elementCount));
         }
+        long memFree  = Runtime.getRuntime().freeMemory();
+        int memUsed1 = (int) (memTotal - memFree);
         long t1 = System.nanoTime();
         System.gc();
         System.gc();
@@ -86,8 +103,8 @@ public class Benchmark {
             Arr.lastIndexOf(a);
         }
         long t4 = System.nanoTime();
-        Ks.ouf("%7d %7.4f %7.4f %7.4f %7.4f \n", elementCount,
-                (t1 - t0) / 1e9, (t2 - t1) / 1e9, (t3 - t2) / 1e9, (t4 - t3) / 1e9);
+        Ks.ouf("%7d %7.4f %7.4f %7.4f %7.4f %7d\n", elementCount,
+                (t1 - t0) / 1e9, (t2 - t1) / 1e9, (t3 - t2) / 1e9, (t4 - t3) / 1e9, memUsed1);
     }
 
     void execute() {
@@ -101,16 +118,16 @@ public class Benchmark {
         Ks.oun("5 - Math.hypot(x, y) - su int");
         Ks.oun("6 - Math.sqrt(x*x+y*y) - su double");
         Ks.oun("7 - Math.hypot(x, y) - su double");
-        Ks.ouf("%6d %7d %7d %7d %7d %7d %7d %7d \n", 0, 1, 2, 3, 4, 5, 6, 7);
+        Ks.ouf("%6d %7d %7d %7d %7d %7d %7d %7d %7d \n", 0, 1, 2, 3, 4, 5, 6, 7, 8);
         for (int n : counts) {
             testSqrtVsHypot(n);
         }
         Ks.oun("ArrayList.IndexOf vs ArrayList.LastIndexOf");
         Ks.oun("1 - Pasiruošimas tyrimui - duomenų generavimas");
         Ks.oun("2 - Pasiruošimas tyrimui - šiukšlių surinkimas");
-        Ks.oun("3 - ArrayList.indexOf 5% galimų reikšmių");
-        Ks.oun("4 - ArrayList.lastIndexOf 5% galimų reikšmių");
-        Ks.ouf("%6d %7d %7d %7d %7d \n", 0, 1, 2, 3, 4);
+        Ks.oun("3 - ArrayList.indexOf 50% galimų reikšmių");
+        Ks.oun("4 - ArrayList.lastIndexOf 50% galimų reikšmių");
+        Ks.ouf("%6d %7d %7d %7d %7d %7d \n", 0, 1, 2, 3, 4, 5);
         for (int n : counts) {
             testArrayList(n);
         }
